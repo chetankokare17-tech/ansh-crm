@@ -4,15 +4,42 @@
   "description": "Amfico MIS - TallyPrime division-wise P&L desktop app",
   "main": "main.js",
   "scripts": {
-    "start": "electron --max-old-space-size=6144 .",
+    "start": "electron .",
     "test": "node --test \"test/*.test.js\"",
-    "checktally": "node checktally.js"
+    "checktally": "node checktally.js",
+    "dist": "electron-builder --win nsis portable --x64",
+    "dist:portable": "electron-builder --win portable --x64"
   },
   "license": "UNLICENSED",
   "dependencies": {
     "fast-xml-parser": "^5.11.2"
   },
   "devDependencies": {
-    "electron": "^31.0.0"
+    "electron": "^31.0.0",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "com.amfico.mis",
+    "productName": "Amfico MIS",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**",
+      "src/**",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }
