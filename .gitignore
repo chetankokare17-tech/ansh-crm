@@ -1,0 +1,5 @@
+node_modules/
+dist/
+*.log
+tally_debug.xml
+checktally.txt
